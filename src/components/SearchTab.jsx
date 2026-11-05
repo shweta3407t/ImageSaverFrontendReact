@@ -5,7 +5,7 @@ const SearchTab = () => {
   return (
 
     <div className='h-14 w-3xl   p-2  border-2 rounded-4xl  flex  flex-row place-items-center   justify-between ' >
-      <div> <i class="ri-search-line"></i>   </div>
+      <div> <i className="ri-search-line"></i>   </div>
       <div>Quick Search Image </div>
       
 

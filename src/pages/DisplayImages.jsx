@@ -1,9 +1,9 @@
 import React from 'react'
-import Images from './Images'
+import Images from '../components/Images'
 
 
 //bg-[url("")]  //
-const DisplayImages = (props) => {
+const DisplayImages = () => {
     return (
         <div>
             <Images/>
