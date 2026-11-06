@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import Image from '../components/Images';
 
 const Post = () => {
 
@@ -37,7 +38,7 @@ const Post = () => {
         formData.append('file', selectedFile)
 
 
-        let url = "http://localhost:8080/api/image/upload";
+        const url = "http://localhost:8080/api/image/upload";
 
         console.log("response k pass")
         try {
@@ -46,6 +47,8 @@ const Post = () => {
 
             console.log("sssssssssssss aa gaya ")
             console.log(response.data);
+
+            <Image title={title }  description={description} tag={tag} Category={Category} image={selectedFile} />
  
 
 
