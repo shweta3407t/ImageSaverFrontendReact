@@ -1,7 +1,7 @@
 import React from 'react'
 import Nevbar from './components/Nevbar'
  import { Route, Routes } from 'react-router-dom'
-import Post from './pages/Post.1'
+import Post from './pages/Post'
 import Home from './pages/Home'
 
 const App = () => {
@@ -11,7 +11,7 @@ const App = () => {
          <Nevbar />
 
       <Routes>
-        <Route path='/home' element={<Home />} /> 
+        <Route path='/' element={<Home />} /> 
         <Route path='/post' element={<Post />} />
       </Routes>
     </div>
