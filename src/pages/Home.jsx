@@ -4,7 +4,7 @@ import DisplayImages from './DisplayImages'
 
 const Home = () => {
   return (
-    <div>
+    <div>lllllllllllllllllllllllll
       <DisplayImages />
     </div>
   )

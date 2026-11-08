@@ -1,8 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import 'remixicon/fonts/remixicon.css'
-import SearchResponsePage from './pages/SearchResponsePage';
-import { useNavigate } from 'react-router-dom';
+ import { useNavigate } from 'react-router-dom';
 
 const SearchTab = ({ }) => {
   const [inputValue, setImputValue] = useState([]);
@@ -23,11 +22,12 @@ const SearchTab = ({ }) => {
           value={inputValue}
           onChange={(e) => {
             setImputValue(e.target.value); 
-            <SearchResponsePage  inputValue/> 
+            // <SearchResponsePage  inputValue/> 
 
-             navigate('/searchResponsePage ')
-            
-          }}> </input>
+            navigate('/searchResponsePage');
+
+             
+          }}/> 
 
       </div>
 

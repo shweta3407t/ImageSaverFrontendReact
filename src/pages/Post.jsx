@@ -61,16 +61,15 @@ const Post = () => {
 
 
     return (
-        <div className='  flex justify-center  flex-col items-center  m-11'>
+        <div className='  flex justify-center  flex-col items-center   pt-40'>
             <div className='text-center'> <h1 className='text-4xl  bg-amber-950 text-mauve-100 rounded-3xl h-12 w-2xl '>Image Details</h1> </div>
             <div className=' flex  justify-baseline p-7   flex-col   bg-mauve-300  border-pink-50 
              border-4  h-100 rounded-3xl  max-w-11/12 mt-12 '>
 
                 <form className=' flex justify-evenly gap-9 text-2xl flex-col   '
                     onSubmit={async (event) => {
-                        console.log("before  upload ")
-                        await uploadImage(event);
-                        console.log("after  upload ")
+                        await uploadImage(event);////baki
+
 
                     }}>
 
@@ -129,12 +128,19 @@ const Post = () => {
                             onChange={manageFiles} />
                     </div>
 
-                    <div className='  flex justify-center   m-7 '>
-                        <button className=' h-11  w-72   text-mist-50  bg-amber-500 
+                    <div className='  flex justify-center items-center p-5 flex-col  m-7  '>
+                        <button className=' h-11  w-72   text-mist-50 pb-5  bg-amber-500 
                         border-radi rounded-4xl  ' >upload Image</button>
 
+                        <div className='text-4xl h-11  w-50 items-center    text-mist-50  bg-mauve-950
+                        border-radi rounded-4xl  '><i class="ri-arrow-left-long-line"></i> Back</div>
+
                     </div>
+
+                      
                 </form>
+
+                
 
             </div>
 

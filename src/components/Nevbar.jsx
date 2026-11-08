@@ -1,6 +1,6 @@
 import React from 'react'
 import SearchTab from './SearchTab'
-import { Link, useNavigate } from 'react-router-dom'
+import {   useNavigate } from 'react-router-dom'
  
 
 
@@ -15,7 +15,7 @@ const Nevbar = () => {
 
 
   return (
-    <div className=' h-22 w-full flex justify-between p-8 border-b-2  place-items-center fixed  '>
+    <div className=' h-22 w-full flex justify-between p-8 border-b-2  place-items-center fixed  bg-green-400 '>
       <div className=' bg-black h-11  w-11  text-amber-50 border-radi rounded-full font-semibold '>logo</div>
       <SearchTab />
 
