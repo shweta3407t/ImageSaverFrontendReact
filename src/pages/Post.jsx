@@ -14,16 +14,16 @@ const Post = () => {
 
     //manage file function
     const manageFiles = (e) => {
-          if (e.target.files && e.target.files.length > 0) {
-    setSelectedFile(e.target.files[0]);
-  }
+        if (e.target.files && e.target.files.length > 0) {
+            setSelectedFile(e.target.files[0]);
+        }
     }
 
 
     //upload function
     const uploadImage = async (event) => {
         event.preventDefault();
- 
+
 
         if (!selectedFile) {
             alert('Please select a file first!');
@@ -48,8 +48,8 @@ const Post = () => {
             console.log("sssssssssssss aa gaya ")
             console.log(response.data);
 
-            <Image title={title }  description={description} tag={tag} Category={Category} image={selectedFile} />
- 
+            <Image title={title} description={description} tag={tag} Category={Category} image={selectedFile} />
+
 
 
         } catch (error) {
@@ -70,7 +70,7 @@ const Post = () => {
                     onSubmit={async (event) => {
                         console.log("before  upload ")
                         await uploadImage(event);
-                                                console.log("after  upload ")
+                        console.log("after  upload ")
 
                     }}>
 
@@ -126,7 +126,7 @@ const Post = () => {
                             type='file'
                             placeholder='Select image file'
                             accept="image/*"
-                             onChange={ manageFiles} />
+                            onChange={manageFiles} />
                     </div>
 
                     <div className='  flex justify-center   m-7 '>
