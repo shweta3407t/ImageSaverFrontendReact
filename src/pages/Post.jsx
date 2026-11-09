@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import Image from '../components/Images';
+import {   useNavigate } from 'react-router-dom'
+ 
 
 const Post = () => {
+      const navigate = useNavigate();
+    
 
     //form data
     const [title, setTitle] = useState('');
@@ -133,7 +137,11 @@ const Post = () => {
                         border-radi rounded-4xl  ' >upload Image</button>
 
                         <div className='text-4xl h-11  w-50 items-center    text-mist-50  bg-mauve-950
-                        border-radi rounded-4xl  '><i class="ri-arrow-left-long-line"></i> Back</div>
+                        border-radi rounded-4xl   ' onClick={()=>{
+                             navigate('/')
+                        }}>
+                            <i className="ri-arrow-left-long-line"></i> Back
+                            </div>
 
                     </div>
 

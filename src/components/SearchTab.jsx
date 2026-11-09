@@ -7,7 +7,7 @@ const SearchTab = ({ }) => {
   const [inputValue, setImputValue] = useState([]);
 
  
-    const navigate = useNavigate();
+      const navigate = useNavigate();
  
   return (
 
@@ -21,10 +21,10 @@ const SearchTab = ({ }) => {
           placeholder='Quick Search Image '
           value={inputValue}
           onChange={(e) => {
-            setImputValue(e.target.value); 
+            // setImputValue(e.target.value); 
             // <SearchResponsePage  inputValue/> 
 
-            navigate('/searchResponsePage');
+              navigate('/SearchResponsePage')
 
              
           }}/> 
