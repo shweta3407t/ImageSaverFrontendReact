@@ -11,20 +11,22 @@ const SearchTab = ({ }) => {
  
   return (
 
-    <div className='h-14 w-3xl   p-2  border-2 rounded-4xl  flex  
+    <div className='h-14 w-3xl   p-2  border-2 rounded-4xl  flex 
     flex-row place-items-center   justify-between '  >
       <div className='text-4xl'> <i className="ri-search-line"></i>   </div>
 
-      <div className=' bg-amber-400 grow'>
+      <div className='  grow'>
         <input
           type='text '
           placeholder='Quick Search Image '
           value={inputValue}
           onChange={(e) => {
-            // setImputValue(e.target.value); 
-            // <SearchResponsePage  inputValue/> 
+            
 
-              navigate('/SearchResponsePage')
+              navigate('/searchResponsePage')
+
+                setImputValue(e.target.value); 
+            <SearchResponsePage  inputValue/>
 
              
           }}/> 

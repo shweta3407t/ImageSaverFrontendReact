@@ -46,7 +46,8 @@ const DisplayImages = () => {
             hasPrevious = Boolean(data.hasPrevious);
             hasNext = Boolean(data.hasNext);
 
-            setData.push(imageContainer)
+            // setData.push(imageContainer)
+            setData(prevData => [...prevData,  imageContainer]);
 
             data.forEach((singleData) => {
 
@@ -63,7 +64,7 @@ const DisplayImages = () => {
     if (loading) return <p>Loading...</p>;
 
     return (
-        <div>
+        <div >
             {imageContainer}
         </div>
 

@@ -132,17 +132,11 @@ const Post = () => {
                             onChange={manageFiles} />
                     </div>
 
-                    <div className='  flex justify-center items-center p-5 flex-col  m-7  '>
+                    <div className='  flex justify-center items-center p-5 flex-col gap-3 m-7  '>
                         <button className=' h-11  w-72   text-mist-50 pb-5  bg-amber-500 
                         border-radi rounded-4xl  ' >upload Image</button>
 
-                        <div className='text-4xl h-11  w-50 items-center    text-mist-50  bg-mauve-950
-                        border-radi rounded-4xl   ' onClick={()=>{
-                             navigate('/')
-                        }}>
-                            <i className="ri-arrow-left-long-line"></i> Back
-                            </div>
-
+                       
                     </div>
 
                       

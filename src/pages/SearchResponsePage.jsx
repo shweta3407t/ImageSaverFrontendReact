@@ -72,8 +72,8 @@ const SearchResponsePage = () => {
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1)
 
   return (
-    <div className='  text-4xl bg-cyan-500  flex flex-wrap flex-col'  >
-      <div className=' bg-amber-400 text-6xl  h-200 mt-22'>
+    <div className='  text-4xl   flex flex-wrap flex-col'  >
+      <div className='  text-6xl  h-200 mt-22'>
 
         {isLoading ?
           (<p> Loading ......</p>) :
@@ -92,32 +92,45 @@ const SearchResponsePage = () => {
       </div>
       <div>
         <hr></hr>
+        {/* pagination */}
       </div>
 
-      <div className=' flex justify-center items-center flex-row  h-18  '>
-        
-        <button onClick={handlePrevPage} disabled={currentPage === 1 || isLoading} className='bg-lime-900'>  Previous </button>
+      <div className=' flex justify-center items-center flex-row gap-3  h-18  '>
 
- {pages.map((number) => (
+        <button onClick={handlePrevPage} disabled={currentPage === 1 || isLoading}
+          className='bg-amber-500  w-72  text-amber-50 border-radi rounded-4xl  
+        font-semibold   items-center'>
+         <i className="ri-arrow-left-double-fill"></i>
+          Previous </button>
+
+
+        {pages.map((number) => (
           <button
+
             key={number}
             onClick={() => handlePageClick(number)}
-            className={`bg-fuchsia-600 $currentPage === number ? 'active' : '  '`}
+            className={`  $currentPage === number ? 'active' : '  ' bg-amber-500 h-11  w-40 
+               text-amber-50 border-radi rounded-4xl   font-semibold   items-center`}
 
             disabled={isLoading}
           >
             {number}
           </button>
         ))}
-        
+
 
         <button
           onClick={handleNextPage}
           disabled={currentPage === totalPages || isLoading}
-          className='bg-blue-400'
+          className='bg-amber-500 h-11  w-72  text-amber-50 border-radi rounded-4xl  
+        font-semibold   items-center'
         >
           Next
+          <i className="ri-arrow-right-double-fill"></i>
         </button>
+
+
+        
       </div>
 
 

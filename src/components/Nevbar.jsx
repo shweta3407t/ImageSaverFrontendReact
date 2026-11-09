@@ -1,7 +1,7 @@
 import React from 'react'
 import SearchTab from './SearchTab'
-import {   useNavigate } from 'react-router-dom'
- 
+import { useNavigate } from 'react-router-dom'
+
 
 
 //react router dom
@@ -9,30 +9,36 @@ import {   useNavigate } from 'react-router-dom'
 
 const Nevbar = () => {
 
- 
+
   const navigate = useNavigate();
 
 
 
   return (
-    <div className=' h-22 w-full flex justify-between p-8 border-b-2  place-items-center fixed  bg-green-400 '>
-      <div className=' bg-black h-11  w-11  text-amber-50 border-radi rounded-full font-semibold '>logo</div>
+    <div className=' h-22 w-full flex justify-between p-8 border-b-2  place-items-center fixed   '>
+      <div className='flex items-center  gap-10  '>
+        <button className='text-3xl '><i className="ri-arrow-left-long-fill" 
+        onClick={()=>{
+          navigate('/')
+        }}></i></button>
+        <div className=' bg-black h-11  w-11  text-amber-50 border-radi rounded-full font-semibold '>logo</div>
+      </div>
+
       <SearchTab />
 
-
       <button className=' bg-black h-11  w-72  text-amber-50 border-radi rounded-4xl  
-        font-semibold flex   justify-center items-center '
-        onClick={() =>{
+        font-semibold   items-center '
+        onClick={() => {
 
           navigate('/post')
 
-        }} >  Post Image 
+        }} >  Post Image
       </button>
 
-       
+
 
     </div>
-    
+
 
 
   )
