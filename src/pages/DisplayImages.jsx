@@ -7,65 +7,72 @@ import { data } from 'react-router-dom';
 //bg-[url("")]  //
 const DisplayImages = () => {
 
-
-
-    let currentPage
-    let totalPages
-    const size = 4
-    let hasPrevious
-    let hasNext
+    const size = 10
+    const page =3
+    // const [currentPage, setCurrentPage] = useState([])
+    // const [totalPages, setTotalPages] = useState([])
+    // const [hasPrevious, setHasPrevious] = useState(false);
+    // const [hasNext, setHasNext] = useState(false);
 
     const [loading, setLoading] = useState(true);
+        const [data, setData] = useState([]);
 
-    const [data, setData] = useState([])
-    const [imageContainer, setImageContainer] = useState([]);
-
-
+    
 
     //function
     useEffect(() => {
-        const displayImg = async (currentPage) => {
+        setLoading(true)
+        console.log("display image kkkkkkkkk yaha haiii");
+         const displayImg = async (page) => {
             const url = `http://localhost:8080/api/image/search`;
-
+ 
             try {
                 const response = await axios.get(url, {
-                  // Axios encodes this automatically!
-                    page: currentPage,
-                    size: size
+                    params: {
+                        page:  page,
+                        size: size
+                    }
                 })
 
-                setData(response.data)
+                const apiResult = response.data;
+                setData(apiResult.content || []);
+ 
+                //  setTotalPages(apiResult.totalPages);
+                // setHasPrevious(apiResult.hasPrevious);
+                // setHasNext(apiResult.hasNext);
 
+                
+
+    
             } catch (error) {
                 console.error("Error fetching data:", error);
             } finally {
                 setLoading(false);
             }
 
-            totalPages = Number(data.totalPages);
-            hasPrevious = Boolean(data.hasPrevious);
-            hasNext = Boolean(data.hasNext);
 
-            // setData.push(imageContainer)
-            setData(prevData => [...prevData,  imageContainer]);
 
-            data.forEach((singleData) => {
-
-                setImageContainer.push(<Images id={singleData.id} title={singleData.title}
-                    description={singleData.description}
-                    tag={singleData.tag} category={singleData.category} image={singleData.file}
-                    originalUrl={singleData.originalUrl} thumbnailUrl={singleData.thumbnailUrl} />
-                )
-            })
         }
-        displayImg(1)
+        displayImg(page)
     }, [])
 
     if (loading) return <p>Loading...</p>;
 
     return (
-        <div >
-            {imageContainer}
+        <div className='flex   flex-wrap flex-col ' >
+           {  data.map((singleData) => (
+                    <Images 
+                        key={singleData.id}
+                        id={singleData.id} 
+                        title={singleData.title}
+                        description={singleData.description}
+                        tag={singleData.tag} 
+                        category={singleData.category} 
+                        image={singleData.file}
+                        originalUrl={singleData.originalUrl} 
+                        thumbnailUrl={singleData.thumbnailUrl} 
+                    />
+                ))}
         </div>
 
 

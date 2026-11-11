@@ -40,32 +40,7 @@ const SearchTab = ({ }) => {
 
     </div>
 
-
-
-
-    //////////////////////////pagination 
-
-    //  {/* Pagination Controls */}
-    //   <div style={{ marginTop: '20px', display: 'flex', gap: '5px' }}>
-    //     <button onClick={prevPage} disabled={currentPage === 1}>
-    //       Prev
-    //     </button>
-
-    //     {/* Generate dynamic page number buttons */}
-    //     {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-    //       <button
-    //         key={page}
-    //         onClick={() => goToPage(page)}
-    //         style={{ fontWeight: currentPage === page ? 'bold' : 'normal' }}
-    //       >
-    //         {page}
-    //       </button>
-    //     ))}
-
-    //     <button onClick={nextPage} disabled={currentPage === totalPages}>
-    //       Next
-    //     </button>
-    //   </div>
+ 
   )
 }
 

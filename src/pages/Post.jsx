@@ -26,8 +26,8 @@ const Post = () => {
 
     //upload function
     const uploadImage = async (event) => {
-        event.preventDefault();
-
+        event.preventDefault()
+        event.stopPropagation()
 
         if (!selectedFile) {
             alert('Please select a file first!');
@@ -46,11 +46,9 @@ const Post = () => {
 
         console.log("response k pass")
         try {
-            console.log("11111111111111")
-            let response = await axios.post(url, formData);
+             let response = await axios.post(url, formData);
 
-            console.log("sssssssssssss aa gaya ")
-            console.log(response.data);
+             console.log(response.data);
 
             <Image title={title} description={description} tag={tag} Category={Category} image={selectedFile} />
 
@@ -65,7 +63,7 @@ const Post = () => {
 
 
     return (
-        <div className='  flex justify-center  flex-col items-center   pt-40'>
+        <div className='  flex justify-center  flex-col items-center   pt-20'>
             <div className='text-center'> <h1 className='text-4xl  bg-amber-950 text-mauve-100 rounded-3xl h-12 w-2xl '>Image Details</h1> </div>
             <div className=' flex  justify-baseline p-7   flex-col   bg-mauve-300  border-pink-50 
              border-4  h-100 rounded-3xl  max-w-11/12 mt-12 '>
@@ -134,7 +132,7 @@ const Post = () => {
 
                     <div className='  flex justify-center items-center p-5 flex-col gap-3 m-7  '>
                         <button className=' h-11  w-72   text-mist-50 pb-5  bg-amber-500 
-                        border-radi rounded-4xl  ' >upload Image</button>
+                         rounded-4xl  ' >upload Image</button>
 
                        
                     </div>
