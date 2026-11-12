@@ -15,7 +15,7 @@ const Nevbar = () => {
 
 
   return (
-    <div className=' fixed  h-22 w-full flex justify-between p-8 border-b-2  place-items-center   shadow-md '>
+    <div className=' fixed  h-22 w-full flex justify-between p-8 border-b-2 bg-white place-items-center   shadow-md '>
       <div className='flex items-center  gap-10  '>
         <button className='text-3xl '><i className="ri-arrow-left-long-fill" 
         onClick={()=>{

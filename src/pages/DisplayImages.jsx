@@ -7,8 +7,8 @@ import { data } from 'react-router-dom';
 //bg-[url("")]  //
 const DisplayImages = () => {
 
-    const size = 10
-    const page =3
+    const size = 20
+    const page =0
     // const [currentPage, setCurrentPage] = useState([])
     // const [totalPages, setTotalPages] = useState([])
     // const [hasPrevious, setHasPrevious] = useState(false);
@@ -59,7 +59,7 @@ const DisplayImages = () => {
     if (loading) return <p>Loading...</p>;
 
     return (
-        <div className='flex   flex-wrap flex-col ' >
+        <div className='flex   flex-wrap  ' >
            {  data.map((singleData) => (
                     <Images 
                         key={singleData.id}

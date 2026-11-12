@@ -1,37 +1,51 @@
-import React from 'react'
-import DeleteImage from './DeleteImage'
+import React, { useState } from 'react'
 import axios from 'axios';
 
 const Image = ({ id, title, description, tag, category, image, originalUrl, thumbnailUrl }) => {
 
-   
 
-    return (
-        <div className='flex p-7 ' >
-            <div className='h-96 w-96  flex items-center p-3  flex-col  border-gray-600
-             border-4 rounded-2xl bg-cover bg-center bg-no-repeat '>
+  const [isDeleted, setIsDeleted] = useState(false);
 
-                <div className='h-72 w-87  m-3   bg-amber-500 rounded-2xl '
-                 style={{ backgroundImage: `url(${thumbnailUrl})` }}  ></div>
+  const handleDelete = async () => {
+    const url = `http://localhost:8080/api/image/delete`;
 
-                <div className='  flex w-full h-13  justify-between p-2'>
+    const response = await axios.delete(url, {
+      params: {
+        id: id
+      },
+    })
+    console.log("response k bad")
+    console.log(response.data);
 
-                    <div className=' justify-start w-2xl text-black text-2xl bg-cover bg-center ' >Title: {title}</div>
-                    {/* <div className=' justify-start w-2xl text-black text-2xl' > {description}</div>
-                    <div className=' justify-start w-2xl text-black text-2xl' >{ tag}</div>
-                    <div className=' justify-start w-2xl text-black text-2xl' >{category}</div> */}
+    setIsDeleted(true);
 
-                    <button className=' bg-red-700 text-amber-50 w-1/5 text-center text-3xl '
-                    onDoubleClick={() => {<DeleteImage />}} >
-                        <i className="ri-delete-bin-6-line" > </i>
+  };
 
-                    </button>
-                </div>
+  if (isDeleted) return null;
 
-            </div>
+  return (
+    <div className="flex p-7">
+      <div className="flex h-64  w-64 flex-col items-center rounded-3xl border-4 border-gray-600 ">
+
+        <img src={thumbnailUrl}
+          className="m-3\ h-full w-full  rounded-2xl  bg-cover bg-center bg-no-repeat" />
+
+        <div className="flex h-12 w-full items-center justify-between p-2">
+          <div className="truncate text-2xl text-black">Title: {title}</div>
+
+
+          <button
+            className="w-1/5 rounded bg-red-700 text-center text-3xl text-amber-50
+            shadow-md transition-all duration-150  active:scale-95
+             active:bg-blue-800 active:shadow-inner"
+            onDoubleClick={handleDelete}
+          >
+            <i className="ri-delete-bin-6-line"></i>
+          </button>
         </div>
-
-    )
+      </div>
+    </div>
+  )
 }
 
 export default Image

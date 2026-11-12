@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import Image from '../components/Images';
-import {   useNavigate } from 'react-router-dom'
- 
+import { useNavigate } from 'react-router-dom'
+
 
 const Post = () => {
-      const navigate = useNavigate();
-    
+    const navigate = useNavigate();
+
 
     //form data
     const [title, setTitle] = useState('');
@@ -44,14 +44,16 @@ const Post = () => {
 
         const url = "http://localhost:8080/api/image/upload";
 
-        console.log("response k pass")
         try {
-             let response = await axios.post(url, formData);
+            let response = await axios.post(url, formData);
 
-             console.log(response.data);
+            console.log("response aa gaya " + response.data);
+            if (response) {
+                window.alert("Image uploaded successfully");
+            }
 
-            <Image title={title} description={description} tag={tag} Category={Category} image={selectedFile} />
 
+           
 
 
         } catch (error) {
@@ -61,6 +63,7 @@ const Post = () => {
 
     };
 
+    // life cycle of component 
 
     return (
         <div className='  flex justify-center  flex-col items-center   pt-20'>
@@ -131,16 +134,16 @@ const Post = () => {
                     </div>
 
                     <div className='  flex justify-center items-center p-5 flex-col gap-3 m-7  '>
-                        <button className=' h-11  w-72   text-mist-50 pb-5  bg-amber-500 
-                         rounded-4xl  ' >upload Image</button>
+                        <button className=' h-11  w-72   text-mist-50 pb-5  bg-amber-500  rounded-4xl  
+                        shadow-md transition-all duration-150  active:scale-95 active:shadow-inner ' >upload Image</button>
 
-                       
+
                     </div>
 
-                      
+
                 </form>
 
-                
+
 
             </div>
 

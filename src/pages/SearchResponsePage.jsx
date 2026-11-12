@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
-const SearchResponsePage = () => {
+const SearchResponsePage = ({keyword}) => {
 
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -10,7 +10,7 @@ const SearchResponsePage = () => {
   const [hasNext, sethasNext] = useState([false])
   const [isLoading, setIsLoading] = useState(true);
 
-  const size = 10
+  const size = 15
 
   const [data, setData] = useState([])
 
@@ -18,7 +18,7 @@ const SearchResponsePage = () => {
 
   useEffect(() => {
     setIsLoading(true)
-    const searchImage = async (keyword) => {
+    const searchImage = async (currentPage) => {
 
 
       const url = `http://localhost:8080/api/image/search/keyword`;
