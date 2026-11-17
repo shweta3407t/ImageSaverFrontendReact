@@ -1,19 +1,19 @@
 import axios from 'axios';
-import React, {  useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import Images from '../components/Images';
 
 
 const SearchResponsePage = () => {
   const location = useLocation();
-const keyword = location.state?.keyword;
+  const keyword = location.state?.keyword;
 
 
-   
+
   console.log("search reaponse page k pass")
   console.log("keyword : " + keyword)
 
-  
+
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
   const [hasPrevious, setHasPrevious] = useState(false)
@@ -24,25 +24,26 @@ const keyword = location.state?.keyword;
 
   const size = 20
 
-  useEffect(() => { 
+  useEffect(() => {
     setCurrentPage(0);
     console.log("111 use effect")
   }, [keyword]);
+  
 
 
   useEffect(() => {
     console.log("222222222")
-   
+
 
     const searchImage = async (page) => {
 
-      if (!keyword || keyword  === "") {
+      if (!keyword || keyword === "") {
         setData([]);
         console.log("in if else")
         setTotalPages(1);
         setHasPrevious(false);
         setHasNext(false);
-        return  <p className="text-5xl text-olive-600">Search by keyword</p>
+        return  
       }
 
 
@@ -100,9 +101,9 @@ const keyword = location.state?.keyword;
   // if (isLoading) return <p className='text-blue-700 text-5xl'>Loading. Image ..</p>;
 
   return (
-    <div className='   flex flex-wrap   '  >
+    <div  >
       {/* //content div */}
-      <div className='  text-6xl '>
+      <div className='  text-6xl flex flex-wrap mb-16 '>
         {(data.map((singleData) =>
           <Images
             key={singleData.id}
