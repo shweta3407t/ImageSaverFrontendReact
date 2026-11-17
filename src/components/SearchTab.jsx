@@ -1,19 +1,27 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
 import 'remixicon/fonts/remixicon.css'
- import { useNavigate } from 'react-router-dom';
-import SearchResponsePage from '../pages/SearchResponsePage';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
-const SearchTab = ({ }) => {
-  const [inputValue, setImputValue] = useState([]);
+const SearchTab = () => {
+  let [inputValue, setInputValue] = useState("");
+  const navigate = useNavigate();
 
- 
-      const navigate = useNavigate();
- 
-  return (
+  const handleSearch = () => {
+    
+    if (!inputValue.trim()) return
 
-    <div className='h-14 w-3xl   p-2  border-2 rounded-4xl  flex 
-    flex-row place-items-center   justify-between '  >
+    navigate('/searchResponsePage', { state: { keyword: inputValue } });
+    console.log("input value : " + inputValue)
+    setInputValue=("");
+  }
+
+  return ( 
+
+    <form className='h-14 w-3xl   p-2  border-2 rounded-4xl  flex 
+    flex-row place-items-center   justify-between '
+      onChange={handleSearch}
+    >
       <div className='text-4xl'> <i className="ri-search-line"></i>   </div>
 
       <div className='  grow'>
@@ -22,26 +30,24 @@ const SearchTab = ({ }) => {
           placeholder='Quick Search Image '
           value={inputValue}
           onChange={(e) => {
-            
-
-              navigate('/searchResponsePage')
-
-                setImputValue(e.target.value); 
-             <SearchResponsePage  inputValue/>
-
-             
-          }}/> 
+            setInputValue(e.target.value);
+          }} />
 
       </div>
 
+      <button
+        
+        disabled={!inputValue.trim()}
+        className='h-11 w-28 bg-amber-500 text-amber-50 rounded-4xl shadow-md active:shadow-inner  '
+       
+      >
+        Search
+      </button>
 
 
-      <button className=' h-11 w-28 bg-amber-500  text-amber-50 rounded-4xl '>Search</button>
+    </form>
 
 
-    </div>
-
- 
   )
 }
 

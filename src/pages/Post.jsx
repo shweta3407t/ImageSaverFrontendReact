@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import Image from '../components/Images';
-import { useNavigate } from 'react-router-dom'
-
+ 
 
 const Post = () => {
-    const navigate = useNavigate();
+    
+    
 
 
     //form data
@@ -15,7 +15,13 @@ const Post = () => {
     const [Category, setCategory] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
 
-
+       
+    const isFormValid = 
+  title?.trim() !== '' && 
+  description?.trim() !== '' && 
+  tag?.trim() !== '' && 
+  Category?.trim() !== '' ;
+ 
     //manage file function
     const manageFiles = (e) => {
         if (e.target.files && e.target.files.length > 0) {
@@ -52,10 +58,6 @@ const Post = () => {
                 window.alert("Image uploaded successfully");
             }
 
-
-           
-
-
         } catch (error) {
             console.error('Upload error:', error);
         }
@@ -63,19 +65,16 @@ const Post = () => {
 
     };
 
-    // life cycle of component 
 
     return (
-        <div className='  flex justify-center  flex-col items-center   pt-20'>
+        <div className='  flex justify-center  flex-col items-center  mt-5'>
             <div className='text-center'> <h1 className='text-4xl  bg-amber-950 text-mauve-100 rounded-3xl h-12 w-2xl '>Image Details</h1> </div>
-            <div className=' flex  justify-baseline p-7   flex-col   bg-mauve-300  border-pink-50 
+            <div className=' flex  justify-baseline p-7   flex-col w-5/6  bg-mauve-300  border-pink-50 
              border-4  h-100 rounded-3xl  max-w-11/12 mt-12 '>
 
                 <form className=' flex justify-evenly gap-9 text-2xl flex-col   '
                     onSubmit={async (event) => {
-                        await uploadImage(event);////baki
-
-
+                        await uploadImage(event);
                     }}>
 
 
@@ -88,8 +87,13 @@ const Post = () => {
                             value={title}
                             onChange={(e) => {
                                 setTitle(e.target.value)
-                            }} />
+                            }}  />
+                           
+
+                             
                     </div>
+
+                    
 
                     <div className='  text-black   rounded-1.5xl'>
                         <label >Description : </label>
@@ -114,7 +118,7 @@ const Post = () => {
                     </div>
 
                     <div className='  text-black   rounded-1.5xl'>
-                        <label >Caegory : </label>
+                        <label >Category : </label>
                         <input className=' border-solid border-mist-500 border-2'
                             type='text'
                             placeholder='Enter image category'
@@ -134,19 +138,17 @@ const Post = () => {
                     </div>
 
                     <div className='  flex justify-center items-center p-5 flex-col gap-3 m-7  '>
-                        <button className=' h-11  w-72   text-mist-50 pb-5  bg-amber-500  rounded-4xl  
-                        shadow-md transition-all duration-150  active:scale-95 active:shadow-inner ' >upload Image</button>
+                        <button className=' h-11  w-72   text-mist-50 pb-5  bg-amber-500     
+                        shadow-md transition-all duration-150  active:scale-95 active:shadow-inner
+                        rounded-4xl disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100'
 
+                          disabled={!isFormValid}
+                        >
+                            upload Image</button>
 
                     </div>
-
-
                 </form>
-
-
-
             </div>
-
         </div>
     )
 }

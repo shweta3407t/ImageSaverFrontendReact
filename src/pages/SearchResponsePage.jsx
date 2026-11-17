@@ -1,87 +1,109 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, {  useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom';
+import Images from '../components/Images';
 
-const SearchResponsePage = ({keyword}) => {
+
+const SearchResponsePage = () => {
+  const location = useLocation();
+const keyword = location.state?.keyword;
 
 
-  const [currentPage, setCurrentPage] = useState(1);
+   
+  console.log("search reaponse page k pass")
+  console.log("keyword : " + keyword)
+
+  
+  const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
-  const [hasPrevious, sethasPrevious] = useState([false])
-  const [hasNext, sethasNext] = useState([false])
+  const [hasPrevious, setHasPrevious] = useState(false)
+  const [hasNext, setHasNext] = useState(false)
+
   const [isLoading, setIsLoading] = useState(true);
-
-  const size = 15
-
   const [data, setData] = useState([])
 
+  const size = 20
+
+  useEffect(() => { 
+    setCurrentPage(0);
+    console.log("111 use effect")
+  }, [keyword]);
 
 
   useEffect(() => {
-    setIsLoading(true)
-    const searchImage = async (currentPage) => {
+    console.log("222222222")
+   
+
+    const searchImage = async (page) => {
+
+      if (!keyword || keyword  === "") {
+        setData([]);
+        console.log("in if else")
+        setTotalPages(1);
+        setHasPrevious(false);
+        setHasNext(false);
+        return  <p className="text-5xl text-olive-600">Search by keyword</p>
+      }
 
 
       const url = `http://localhost:8080/api/image/search/keyword`;
+      setIsLoading(true);
 
+      try {
+        const searchResponse = await axios.get(url, {
+          params: {
+            keyword: keyword,
+            page: page,
+            size: size
+          }
+        });
 
-      const searchResponse = await axios.get(url, {
-        params: {
-          keyword: keyword,       // Axios  
-          page: currentPage,
-          size: size
-        }
-      });
+        console.log("s reaponse " + searchResponse)
+        const apiResult = searchResponse.data;
 
-      const apiResult = searchResponse.data;
-      setData(apiResult.content || []);
+        // setIsLoading(false);
 
-      setData(apiResult.data);
-      setTotalPages(apiResult.totalPages)
-      sethasPrevious(apiResult.hasPrevious)
-      sethasNext(apiResult.hasNext)
+        setData(apiResult.content);
+        setTotalPages(apiResult.totalPages);
+        setHasPrevious(Boolean(apiResult.hasPrevious));
+        setHasNext(Boolean(apiResult.hasNext));
 
-
-      setIsLoading(false);
-
-
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setIsLoading(false);
+      }
     }
 
     searchImage(currentPage);
-  }, [currentPage])
-
-
+  }, [currentPage, keyword])
 
   //pagination
   const handleNextPage = () => {
-    if (currentPage < totalPages || hasNext) {
-      setCurrentPage((prev) => {
-        prev + 1
-      })
+    if (currentPage < totalPages - 1 || hasNext) {
+      setCurrentPage((prev) => prev + 1);
     }
-  }
+  };
 
   const handlePrevPage = () => {
-    if (currentPage > 1 || hasPrevious) {
+    if (currentPage > 0 || hasPrevious) {
       setCurrentPage((prev) => prev - 1);
     }
   };
 
   const handlePageClick = (pageNumber) => {
-    setCurrentPage(pageNumber);
+    setCurrentPage(pageNumber - 1);
   };
 
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
-  //pageSearchResponsePage 
-  const pages = Array.from({ length: totalPages }, (_, i) => i + 1)
-
-
-  if (isLoading) return <p>Loading...</p>;
+  // if (isLoading) return <p className='text-blue-700 text-5xl'>Loading. Image ..</p>;
 
   return (
-    <div className='  text-4xl   flex flex-wrap flex-col  '  >
+    <div className='   flex flex-wrap   '  >
+      {/* //content div */}
       <div className='  text-6xl '>
-
-        {(data.map((singleData) => {
+        {(data.map((singleData) =>
           <Images
             key={singleData.id}
             id={singleData.id}
@@ -92,48 +114,43 @@ const SearchResponsePage = ({keyword}) => {
             image={singleData.file}
             originalUrl={singleData.originalUrl}
             thumbnailUrl={singleData.thumbnailUrl} />
-        }))}
+        ))}
 
       </div>
 
-      <div className='  bg-mauve-950  fixed bottom-0 left-0 w-full h-16    flex items-center justify-center gap-4 z-40 shadow-inner '>
-        <button onClick={handlePrevPage} disabled={currentPage === 1 || isLoading}
-          className='bg-amber-500  w-72  text-amber-50 border-radi rounded-4xl  
-        font-semibold   items-center'>
-          <i className="ri-arrow-left-double-fill"></i>
-          Previous </button>
+      {/* pagination div */}
+      <div className='bg-mist-50 fixed  bottom-0 left-0 w-full h-16 flex items-center justify-center gap-4 z-40 shadow-inner'>
+        {/* prev button */}
+        <button
+          onClick={handlePrevPage}
+          disabled={!hasPrevious || isLoading}
+          className='bg-amber-500 h-11 w-72 text-amber-50 rounded-4xl font-semibold items-center disabled:opacity-50'
+        >
+          <i className="ri-arrow-left-double-fill"></i> Previous
+        </button>
 
-
+        {/* page buttons */}
         {pages.map((number) => (
           <button
-
             key={number}
             onClick={() => handlePageClick(number)}
-            className={`  $currentPage === number ? 'active' : '  ' bg-amber-500 h-11  w-40 
-               text-amber-50 border-radi rounded-4xl   font-semibold   items-center`}
-
+            // 4. Fixed template literal syntax (${...}) and 0-indexed comparison
+            className={`${currentPage === number - 1 ? 'bg-amber-700 ring-2 ring-amber-900' : 'bg-amber-500'} h-11 w-11 text-amber-50 rounded-full font-semibold items-center`}
             disabled={isLoading}
           >
             {number}
           </button>
         ))}
 
-
+        {/* next button */}
         <button
           onClick={handleNextPage}
-          disabled={currentPage === totalPages || isLoading}
-          className='bg-amber-500 h-11  w-72  text-amber-50 border-radi rounded-4xl  
-        font-semibold   items-center'
+          disabled={!hasNext || isLoading}
+          className='bg-amber-500 h-11 w-72 text-amber-50 rounded-4xl font-semibold items-center disabled:opacity-50'
         >
-          Next
-          <i className="ri-arrow-right-double-fill"></i>
+          Next <i className="ri-arrow-right-double-fill"></i>
         </button>
-
-
-
       </div>
-
-
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios';
 
 const Image = ({ id, title, description, tag, category, image, originalUrl, thumbnailUrl }) => {
-
+ 
 
   const [isDeleted, setIsDeleted] = useState(false);
 
