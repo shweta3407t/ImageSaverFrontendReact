@@ -25,19 +25,19 @@ const ImageInfo = ({ }) => {
 
 
             <div className='  text-3xl  w-100 flex flex-col gap-1.5 '>
-                <label className='   bg-amber-500 border-4 rounded-4xl h-15 p-2  text-white'>Title : {title}</label>
+                <label className='   bg-amber-500  rounded-4xl h-15 p-2 shadow-md  text-white'>Title : {title}</label>
                 <br></br>
 
 
-                <label className='bg-amber-500 border-4 rounded-4xl h-15 p-2 text-white'>Description : {description}</label>
+                <label className='bg-amber-500   rounded-4xl h-15 p-2 shadow-md  text-white'>Description : {description}</label>
                 <br></br>
 
 
-                <label className='bg-amber-500 border-4 rounded-4xl h-15 p-2 text-white'>Tag : {tag}</label>
+                <label className='bg-amber-500   rounded-4xl h-15 p-2 shadow-md  text-white'>Tag : {tag}</label>
                 <br></br>
 
 
-                <label className='bg-amber-500  border-4 rounded-4xl h-15 p-2 text-white'>Category : {category}</label>
+                <label className='bg-amber-500   rounded-4xl h-15 p-2 shadow-md   text-white '>Category : {category}</label>
                 <br></br>
 
             </div>

@@ -14,9 +14,7 @@ const SearchTab = () => {
 
 
   const handleSearch = () => {
-
     if (!inputValue.trim()) return
-
     navigate('/searchResponsePage', { state: { keyword: inputValue } });
     console.log("input value : " + inputValue)
   }
