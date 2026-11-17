@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import Image from '../components/Images';
- 
+
 
 const Post = () => {
-    
-    
-
 
     //form data
     const [title, setTitle] = useState('');
@@ -15,13 +12,13 @@ const Post = () => {
     const [Category, setCategory] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
 
-       
-    const isFormValid = 
-  title?.trim() !== '' && 
-  description?.trim() !== '' && 
-  tag?.trim() !== '' && 
-  Category?.trim() !== '' ;
- 
+
+    const isFormValid =
+        title?.trim() !== '' &&
+        description?.trim() !== '' &&
+        tag?.trim() !== '' &&
+        Category?.trim() !== '';
+
     //manage file function
     const manageFiles = (e) => {
         if (e.target.files && e.target.files.length > 0) {
@@ -87,13 +84,13 @@ const Post = () => {
                             value={title}
                             onChange={(e) => {
                                 setTitle(e.target.value)
-                            }}  />
-                           
+                            }} />
 
-                             
+
+
                     </div>
 
-                    
+
 
                     <div className='  text-black   rounded-1.5xl'>
                         <label >Description : </label>
@@ -142,7 +139,7 @@ const Post = () => {
                         shadow-md transition-all duration-150  active:scale-95 active:shadow-inner
                         rounded-4xl disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100'
 
-                          disabled={!isFormValid}
+                            disabled={!isFormValid}
                         >
                             upload Image</button>
 

@@ -78,7 +78,7 @@ const DisplayImages = () => {
                         description={singleData.description}
                         tag={singleData.tag}
                         category={singleData.category}
-                        image={singleData.file}
+                       
                         originalUrl={singleData.originalUrl}
                         thumbnailUrl={singleData.thumbnailUrl}
                     />
