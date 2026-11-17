@@ -1,11 +1,17 @@
 import axios from 'axios';
 import 'remixicon/fonts/remixicon.css'
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const SearchTab = () => {
-  let [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState("");
   const navigate = useNavigate();
+
+   useEffect(() => {
+    setInputValue('');
+  }, [location.pathname]);
+   
+
 
   const handleSearch = () => {
     
@@ -13,7 +19,6 @@ const SearchTab = () => {
 
     navigate('/searchResponsePage', { state: { keyword: inputValue } });
     console.log("input value : " + inputValue)
-    setInputValue=("");
   }
 
   return ( 
